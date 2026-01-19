@@ -38,17 +38,30 @@
     <div class="gallery" id="gallery"></div>
 
     <script>
-        fetch("images.json")
-            .then(response => response.json())
-            .then(images => {
-                const gallery = document.getElementById("gallery");
-                images.forEach(name => {
-                    const img = document.createElement("img");
-                    img.src = "images/images/" + name;
-                    gallery.appendChild(img);
-                });
+    fetch("images.json")
+        .then(response => response.json())
+        .then(images => {
+            const gallery = document.getElementById("gallery");
+            images.forEach(item => {
+                const container = document.createElement("div");
+                container.style.marginBottom = "20px";
+
+                const img = document.createElement("img");
+                img.src = "images/images/" + item.file;
+
+                const caption = document.createElement("p");
+                caption.textContent = item.title;
+                caption.style.fontSize = "18px";
+                caption.style.color = "#555";
+                caption.style.marginTop = "8px";
+
+                container.appendChild(img);
+                container.appendChild(caption);
+                gallery.appendChild(container);
             });
-    </script>
+        });
+</script>
+
 </body>
 </html>
 
