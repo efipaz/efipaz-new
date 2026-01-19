@@ -1,1 +1,43 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>Gallery</title>
+    <style>
+        body {
+            font-family: Arial;
+            direction: rtl;
+            text-align: center;
+            background: #f5f5f5;
+        }
+        h1 {
+            margin-top: 30px;
+        }
+        .gallery img {
+            width: 300px;
+            margin: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>My Gallery</h1>
+
+    <div class="gallery" id="gallery"></div>
+
+    <script>
+        fetch("images.json")
+            .then(response => response.json())
+            .then(images => {
+                const gallery = document.getElementById("gallery");
+                images.forEach(name => {
+                    const img = document.createElement("img");
+                    img.src = "images/images/" + name;
+                    gallery.appendChild(img);
+                });
+            });
+    </script>
+</body>
+</html>
 
